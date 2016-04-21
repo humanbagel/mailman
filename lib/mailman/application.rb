@@ -109,6 +109,7 @@ module Mailman
 
           callback = Proc.new do |modified, added, removed|
             added.each do |new_file|
+              puts "maildir: #{@maildir}, key: #{Pathname.new(new_file).relative_path_from(base).to_s}"
               message = Maildir::Message.new(@maildir, Pathname.new(new_file).relative_path_from(base).to_s)
               @processor.process_maildir_message(message)
             end
